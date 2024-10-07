@@ -1,0 +1,106 @@
+3 start
+current_address:241
+
+start:7 current_address copy_current
+2 current_address one jump_helper
+
+check_instruction:7 copy_current value_current
+7 value_current:0 current_instruction
+
+
+4 STOP current_instruction STOP
+4 JUMP current_instruction jump_block
+4 COPY current_instruction copy_block
+4 ADD current_instruction add_block
+4 SUBSTRACT current_instruction substract_block
+4 LESS_THAN current_instruction less_than_block
+4 EQUAL current_instruction equal_block
+4 ZERO current_instruction zero_block
+
+3 STOP
+
+jump_block:1 one copy_current copy_current
+7 copy_current jump_to_value
+1 jump_to_value:0 jump_helper copy_current
+3 check_instruction
+
+copy_block:1 one copy_current copy_current
+7 copy_current copy_value1
+1 jump_helper copy_value1:0 address1
+
+1 one copy_current copy_current
+7 copy_current copy_value2
+1 jump_helper copy_value2:0 address2
+ 
+7 address1:0 address2:0
+1 one copy_current copy_current
+3 check_instruction
+
+add_block:7 ADD operation
+
+operations:1 one copy_current copy_current
+7 copy_current add_value1
+1 jump_helper add_value1:0 add_addr1
+
+1 one copy_current copy_current
+7 copy_current add_value2
+1 jump_helper add_value2:0 add_addr2
+
+1 one copy_current copy_current
+7 copy_current add_value3
+1 jump_helper add_value3:0 add_addr3
+
+operation:1 add_addr1:0 add_addr2:0
+add_addr3:0
+1 copy_current one copy_current
+3 check_instruction
+
+substract_block:7 SUBSTRACT operation
+3 operations
+
+less_than_block:7 LESS_THAN check
+continue_equal:1 one copy_current copy_current
+7 copy_current less_value1
+1 less_value1:0 jump_helper less_addr1
+
+1 one copy_current copy_current
+7 copy_current less_value2
+1 less_value2:0 jump_helper less_addr2
+
+1 one copy_current copy_current
+7 copy_current less_value3
+1 less_value3:0 jump_helper less_addr3
+
+
+check:5 less_addr1:0 less_addr2:0 yes
+1 one copy_current copy_current
+3 check_instruction
+yes:0 less_addr3:0 copy_current
+3 check_instruction
+
+equal_block:7 EQUAL check
+3 continue_equal
+
+zero_block:1 one copy_current copy_current
+7 copy_current zero_value1
+
+1 one copy_current copy_current
+7 copy_current zero_value2
+1 jump_helper zero_value2:0 addr2
+7 zero_value1:0 addr2:0
+1 copy_current one copy_current
+3 check_instruction
+
+one:1
+JUMP:3
+copy_current:0
+jump_helper:0
+STOP:9
+COPY:7
+ADD:1
+SUBSTRACT:2
+LESS_THAN:5
+EQUAL:4
+ZERO:0
+current_instruction:0
+9
