@@ -1,0 +1,21 @@
+3 start
+number:144
+root:0
+start:5 root number continue1
+continue1:5 increment root continue2
+4 square number stop
+5 square number continue3
+2 root one root
+3 stop
+continue3:7 zero increment
+7 zero square
+1 root one root
+3 start
+continue2:1 increment one increment
+1 square root square
+3 continue1
+increment:0
+one:1
+zero:0
+square:0
+stop:9
