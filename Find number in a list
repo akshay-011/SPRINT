@@ -1,0 +1,13 @@
+3 start
+first_element length:11 target:99
+result:0
+start:4 address:first_element target yes1
+5 increment length yes2
+stop:9
+yes1:7 one result
+3 stop
+yes2:1 increment one increment
+1 address one address
+3 start
+increment:1 one:1
+first_element:10 6 3 4 2 3 4 5 6 7 2
